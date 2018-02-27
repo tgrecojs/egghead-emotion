@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import Textblock from "./Textblock";
-import styled from "react-emotion";
+import styled, { css } from "react-emotion";
 
 const Container = styled("div")(props => ({
   display: "flex",
@@ -10,10 +10,36 @@ const Container = styled("div")(props => ({
   justifyContent: props.justify ? props.justify : "space-around"
 }));
 
+const successButton = css`
+  color: green;
+  font-weight: 600;
+  background: orange;
+`;
+
+const buttonStyles = css`
+  color: purple;
+  height: 60px;
+  width: 100px;
+  font-family: "Josefin Sans", sans-serif;
+`;
+
+const cancelButton = css`
+  ${buttonStyles};
+  background: black;
+  color: red;
+  font-weight: 600;
+`;
+
 const App = () => (
-  <Container flexboxType="column" wrap="nowrap" justify="space-between">
-    <Textblock />
-    <Textblock name="Dez Bryant" position="WR" />
+  <Container>
+    <button
+      className={css`
+        ${buttonStyles} ${successButton};
+      `}
+    >
+      Click to proceed!
+    </button>
+    <button className={`${cancelButton}`}>Click here to exit!</button>
   </Container>
 );
 
